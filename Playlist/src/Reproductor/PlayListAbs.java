@@ -1,6 +1,8 @@
 package Reproductor;
 import Contenedores.*;
 
+//Archivo nuevo 02 / 06 / 2026
+
 public abstract class PlayListAbs extends Lista2DLinkedList {
     public enum OrdenCriterio {
         NINGUNO, TITULO, ARTISTA, ANIO
