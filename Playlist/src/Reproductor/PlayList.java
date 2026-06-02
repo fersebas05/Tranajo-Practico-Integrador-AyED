@@ -1,5 +1,5 @@
 package Reproductor;
-
+//Actualizado 02 / 06 / 2026
 public class PlayList extends PlayListAbs{
 
     public PlayList(String nombre) {
