@@ -1,42 +1,24 @@
 package Reproductor;
-import Contenedores.*;
 
-public class PlayList extends Lista1DLinkedList {
-    protected String nombre;
+public class PlayList extends PlayListAbs{
 
     public PlayList(String nombre) {
-        super();
-        this.nombre = nombre;
+        super(nombre);
     }
 
-    public String getNombre() {
-        return this.nombre;
+    public PlayList(String nombre, OrdenCriterio criterio) {
+        super(nombre, criterio);
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void ordenar(OrdenCriterio criterio) {
+        PlayList aux = new PlayList(this.nombre, criterio);
+        for (int i = 0; i < tamanio(); i++) {
+            aux.insertar((Cancion) devolver(i));
+        }
+        
+        for (int i = 0; i < aux.tamanio(); i++) {
+            this.reemplazar(aux.devolver(i), i);
+        }
+        this.criterio = criterio;
     }
-
-    // public void agregarCancion(Cancion cancion) {
-    //     this.insertar(cancion, tamanio());
-    // }
-
-    // public void eliminarCancion(int posicion) {
-    //     this.eliminar(posicion);
-    // }
-
-    // public int cantidadCanciones() {
-    //     return this.tamanio();
-    // }
-
-    public boolean iguales(Object elementoL, Object elemento) {
-        Cancion c1 = (Cancion) elementoL;
-        Cancion c2 = (Cancion) elemento;
-
-        String r1 = c1.getRuta();
-        String r2 = c2.getRuta();
-
-        return r1.equals(r2);
-    }
-
 }
