@@ -1,5 +1,7 @@
 package GUI;
 
+//Actualizado 02 / 06 / 2026
+
 import java.io.File;
 
 import Reproductor.*;
@@ -26,6 +28,10 @@ public class Ventana extends Application{
     protected ReproductorMP3 reproductor;
     protected PlayList playlist;
     protected LectorMP3 lector;
+
+    protected Button button_ordenarTitulo;
+    protected Button button_ordenarArtista; 
+    protected Button button_ordenarAnio;
     
     public void start(Stage stage) {
         inicializarComponentes();
@@ -50,6 +56,9 @@ public class Ventana extends Application{
         this.button_pause = new Button("Pause");
         this.button_stop = new Button("Stop");
         this.button_next = new Button(">>");
+        this.button_ordenarTitulo = new Button("Ordenar por Título");
+        this.button_ordenarArtista = new Button("Ordenar por Artista");
+        this.button_ordenarAnio = new Button("Ordenar por Año");
 
         registrarEventos();
     }
@@ -93,6 +102,19 @@ public class Ventana extends Application{
             System.out.println("SIGUIENTE");
             this.reproductor.siguiente();
         });
+
+        this.button_ordenarTitulo.setOnAction(e -> {
+            this.playlist.ordenar(PlayListAbs.OrdenCriterio.TITULO);
+            this.reproductor.cargarPlayList(this.playlist);
+        });
+        this.button_ordenarArtista.setOnAction(e -> {
+            this.playlist.ordenar(PlayListAbs.OrdenCriterio.ARTISTA);
+            this.reproductor.cargarPlayList(this.playlist);
+        });
+        this.button_ordenarAnio.setOnAction(e -> {
+            this.playlist.ordenar(PlayListAbs.OrdenCriterio.ANIO);
+            this.reproductor.cargarPlayList(this.playlist);
+        });
     }
 
     private VBox crearLayout() {
@@ -101,9 +123,14 @@ public class Ventana extends Application{
         controles.getChildren().addAll(button_prev,button_play, button_pause, button_stop, button_next);
         controles.setAlignment(Pos.CENTER);
 
+        HBox ordenar = new HBox();
+        ordenar.setSpacing(10);
+        ordenar.getChildren().addAll(button_ordenarTitulo, button_ordenarArtista, button_ordenarAnio);
+        ordenar.setAlignment(Pos.CENTER);
+
         VBox root = new VBox();
         root.setSpacing(20);
-        root.getChildren().addAll(button_addFiles, controles);
+        root.getChildren().addAll(button_addFiles, controles, ordenar);
         root.setAlignment(Pos.CENTER);
 
         return root;
