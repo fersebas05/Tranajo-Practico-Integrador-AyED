@@ -6,13 +6,15 @@ public class Cancion {
     protected String album;
     protected String ruta; 
     protected double duracion;
+    protected String anio;
 
-    public Cancion (String titulo, String artista, String album, String ruta, double duracion) {
+    public Cancion (String titulo, String artista, String album, String ruta, double duracion, String anio) {
         this.titulo = titulo;
         this.artista = artista;
         this.album = album;
         this.ruta = ruta;
         this.duracion = duracion;
+        this.anio = anio;
     }
 
     public String getTitulo() {
@@ -35,8 +37,12 @@ public class Cancion {
         return this.duracion;
     }
 
+    public String getAnio() {
+        return this.anio;
+    }
+
     public String toString() {
-        return "Titulo: " + this.titulo + "\n Artista: " + this.artista + "\n Album: " + this.album + "\n Duracion: " + this.duracion;
+        return "Titulo: " + this.titulo + "\n Artista: " + this.artista + "\n Album: " + this.album + "\n Duracion: " + this.duracion+ "\nAnio: " + this.anio;
     }
 
 }
