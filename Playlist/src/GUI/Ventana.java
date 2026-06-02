@@ -1,7 +1,5 @@
 package GUI;
-
-//Actualizado 02 / 06 / 2026
-
+//Actualizado el 02 / 06 / 2026
 import java.io.File;
 
 import Reproductor.*;
@@ -32,6 +30,8 @@ public class Ventana extends Application{
     protected Button button_ordenarTitulo;
     protected Button button_ordenarArtista; 
     protected Button button_ordenarAnio;
+
+    protected Button button_aleatorio;
     
     public void start(Stage stage) {
         inicializarComponentes();
@@ -56,6 +56,9 @@ public class Ventana extends Application{
         this.button_pause = new Button("Pause");
         this.button_stop = new Button("Stop");
         this.button_next = new Button(">>");
+
+        this.button_aleatorio = new Button("Aleatorio");
+
         this.button_ordenarTitulo = new Button("Ordenar por Título");
         this.button_ordenarArtista = new Button("Ordenar por Artista");
         this.button_ordenarAnio = new Button("Ordenar por Año");
@@ -115,12 +118,15 @@ public class Ventana extends Application{
             this.playlist.ordenar(PlayListAbs.OrdenCriterio.ANIO);
             this.reproductor.cargarPlayList(this.playlist);
         });
+        this.button_aleatorio.setOnAction(e -> {
+            this.reproductor.toggleAleatorio();
+        });
     }
 
     private VBox crearLayout() {
         HBox controles = new HBox();
         controles.setSpacing(10);
-        controles.getChildren().addAll(button_prev,button_play, button_pause, button_stop, button_next);
+        controles.getChildren().addAll(button_prev,button_play, button_pause, button_stop, button_aleatorio, button_next);
         controles.setAlignment(Pos.CENTER);
 
         HBox ordenar = new HBox();
